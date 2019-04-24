@@ -1,0 +1,5 @@
+flask
+flask_restful
+requests
+Flask-Testing==0.7.1
+redis
