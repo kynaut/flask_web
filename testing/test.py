@@ -21,7 +21,7 @@ parser.add_argument('--host', dest='HOSTNAME', default='DOCKER_HOST', help='Spec
 parser.add_argument('--port', dest='PORT', default='5000', help='Specify the port on the API host (default: 5000)')
 args = parser.parse_args()
 
-HOSTNAME = 'http://35.225.16.219'
+HOSTNAME = 'http://127.0.0.1'
 PORT = '5000'
 
 # Handle the special case of 'DOCKER_HOST'
