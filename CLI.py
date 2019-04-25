@@ -3,6 +3,8 @@ import requests
 import pip
 import argparse
 import json
+import urllib.parse
+quote_plus = urllib.parse.quote_plus
 
 parser = argparse.ArgumentParser()
 #python CLI.py -u 35.226.71.167 -e md5 -a test -m GET
