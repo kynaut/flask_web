@@ -42,6 +42,6 @@ jobs:
           name: Push application Docker image
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin
+              docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
               docker push kmcguirk/flask_web:latest
             fi
