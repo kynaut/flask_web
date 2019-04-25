@@ -29,9 +29,9 @@ url = "http://"+args.api_ip+":5000/"+args.endpoint
 
 if args.endpoint == "kv-record":
     if args.http_method.lower() == "post":
-         resp = requests.post(url, json=json.parse(args.request_argument))
+         resp = requests.post(url, json=JSON.parse(args.request_argument))
     elif args.http_method.lower() == "put":
-         resp = requests.put(url, json=json.parse(args.request_argument))
+         resp = requests.put(url, json=JSON.parse(args.request_argument))
     else:
         sys.exit("HTTP Method must be PUT or POST for kv-record. If you need help, rerun this program with -h.")
 else:
