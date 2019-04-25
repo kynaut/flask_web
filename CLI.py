@@ -2,6 +2,7 @@ import sys
 import requests
 import pip
 import argparse
+import json
 
 parser = argparse.ArgumentParser()
 #python CLI.py -u 35.226.71.167 -e md5 -a test -m GET
@@ -26,9 +27,9 @@ url = "http://"+args.api_ip+":5000/"+args.endpoint
 
 if args.endpoint == "kv-record":
     if args.http_method.lower() == "post":
-         resp = requests.post(url, json=args.request_argument)
+         resp = requests.post(url, json=json.load(args.request_argument))
     elif args.http_method.lower() == "put":
-         resp = requests.post(url, json=args.request_argument)
+         resp = requests.post(url, json=json.load(args.request_argument))
     else:
         sys.exit("HTTP Method must be PUT or POST for kv-record. If you need help, rerun this program with -h.")
 else:
