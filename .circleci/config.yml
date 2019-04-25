@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/flask_web
+    working_directory: .
     docker:
       - image: docker:17.05.0-ce-git
     steps:
@@ -42,8 +42,6 @@ jobs:
           name: Push application Docker image
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              login="$(aws ecr get-login)"
-              ${login}
-              docker tag app "${ECR_ENDPOINT}/app:${CIRCLE_SHA1}"
-              docker push "${ECR_ENDPOINT}/app:${CIRCLE_SHA1}"
+              echo $DOCKER_PASS | docker login --username $DOCKER_USER --password-stdin
+              docker push kmcguirk/flask_web:latest
             fi
