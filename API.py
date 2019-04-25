@@ -125,7 +125,7 @@ def post_to_slack(msg):
             % (response.status_code, response.text)
         )
     
-    return ("\"%s\" was posted in the #hewasnumber1 Slack Channel" % msg), True
+    return ("\"%s\" was posted in the #hewasnumber1 Slack Channel" % msg), 200
 
 @app.route('/kv-record', methods=['POST', 'PUT'])
 def kv_record():
