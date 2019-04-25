@@ -46,14 +46,14 @@ def factorial_resp(user_input):
     try:
         converted_int = int(user_input)                 #Flask cannot handle negative integer input by default, accept input as string then convert to int to handle negative values
     except ValueError:                                  
-        return "Invalid input. No integer detected."    #handles input validation for non-number input
+        return "Invalid input. No integer detected.", 400    #handles input validation for non-number input
     if converted_int >= 0:
         return jsonify(
             input = converted_int,
             output = fact(converted_int)
         )
     else:
-        return "Invalid input. Must be a non-negative integer."                          #handles input validation to ensure positive integer input
+        return "Invalid input. Must be a non-negative integer.", 400                     #handles input validation to ensure positive integer input
         
 # MD5
 @app.route('/md5/<string:string>', methods=['GET'])
@@ -78,11 +78,11 @@ def fibonacci(xy):
             fib_array = fib_array[:-1]
         
         elif x < 0:                                                                         #handles input validation to ensure positive integer input
-            return jsonify("Error! Please enter a number greater than 0.")              
+            return jsonify("Error! Please enter a number greater than 0."), 400              
         
         return jsonify({'input':x, 'output':fib_array})
     except Exception as e:
-        return jsonify("Error! Please enter a whole number greater than 0.")
+        return jsonify("Error! Please enter a whole number greater than 0."), 400
 
 # Is this digit prime?
 def is_prime(n):
@@ -125,7 +125,7 @@ def post_to_slack(msg):
             % (response.status_code, response.text)
         )
     
-    return ("\"%s\" was posted in the #hewasnumber1 Slack Channel" % msg)
+    return ("\"%s\" was posted in the #hewasnumber1 Slack Channel" % msg), True
 
 @app.route('/kv-record', methods=['POST', 'PUT'])
 def kv_record():
